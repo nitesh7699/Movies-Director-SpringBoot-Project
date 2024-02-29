@@ -13,13 +13,13 @@ public class MovieRepository {
     Map<String, List<Movie>> movieDirectorMap = new TreeMap<>();
 
     public String addMovie(Movie movie){
-        String movieName = movie.getMovieName();
+        String movieName = movie.getName();
         movieMap.put(movieName, movie);
         return "movie "+ movieName +" added successfully";
     }
 
     public String addDirector(Director director){
-        String directorName = director.getDirectorName();
+        String directorName = director.getName();
         directorMap.put(directorName, director);
         return "director "+ directorName +" added successfully";
     }
@@ -46,7 +46,7 @@ public class MovieRepository {
     public List<String> getMoviesByDirectorName(String directorName){
         List<String> listOfMovies = new ArrayList<>();
         for(Movie movie: movieDirectorMap.get(directorName)){
-            listOfMovies.add(movie.getMovieName());
+            listOfMovies.add(movie.getName());
         }
         return listOfMovies;
     }
@@ -57,7 +57,7 @@ public class MovieRepository {
 
     public String deleteDirectorByName(String directorName) throws NullPointerException{
         for(Movie movie: movieDirectorMap.get(directorName)){
-            movieMap.remove(movie.getMovieName());
+            movieMap.remove(movie.getName());
         }
         directorMap.remove(directorName);
         movieDirectorMap.remove(directorName);
@@ -69,7 +69,7 @@ public class MovieRepository {
         //or, directly you can do hmap.clear();
         for(String director: directorMap.keySet()){
             for(Movie movie: movieDirectorMap.get(director)){
-                movieMap.remove(movie.getMovieName());
+                movieMap.remove(movie.getName());
             }
             movieDirectorMap.remove(director);
             directorMap.remove(director);
